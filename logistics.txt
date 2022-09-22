@@ -5,20 +5,20 @@ IMPORTER
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  items - textfield
+  items - textfield(required)
 
 CLIENT
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
   client_id - number(unique, PK)
-  sales - charfield
+  sales - charfield(required)
 
 STOCK
-  item_id - number 
-  name - charfield
-  quantity - number
-  price - currency
+  item_id - number(unique, PK)
+  name - charfield(min5 max50, blank=false)
+  quantity - number(required)
+  price - currency(BigDecimal)
 SALES
   
 
@@ -27,17 +27,17 @@ EMPLOYERS
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
   salary - currency(min0 max=30,000)
-  hours - number
+  hours - number(max8)
   
 TRANSPORTATION
-  transporter - charfield
-  branch - charfield
-  cost - currency
+  transporter - charfield(min5 max40)
+  branch - charfield(min5 max30)
+  cost - currency(BigDecimal)
 
 RELATIONSHIPS
 
 CLIENT - EMPLOYERS(M-M)
-CLIENT - IMPORTER(M-1)
-EMPLOYERS - TRANSPORTATION(M-1)
+IMPORTER - CLIENT(1-M)
+TRANSPORTATION - EMPLOYERS(1-M)
 EMPLOYERS - IMPORTER(M-M)
 

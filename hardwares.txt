@@ -18,23 +18,23 @@ SUPPLIER
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  sales - charfield
+  sales - charfield(min4 max20)
 
 GOODS
-  quality - charfield
-  market price - currency
-  quantity - number
+  quality - charfield((min4 max10))
+  market price - currency(BigDecimal)
+  quantity - number(min10 max10000)
 
 TRANSPORTATION
-  transporter - charfield
-  branch - charfield
-  price - currency  
+  transporter - charfield(min4 max20)
+  branch - charfield(min4 max40)
+  price - currency(BigDecimal)
 
 RELATIONSHIPS
 
 CUSTOMER - EMPLOYERS(M-M)
 CUSTOMER - GOODS(M-M)
-CUSTOMER - TRANSPORTATION(M-1)
-GOODS - TRANSPORTATION(M-1)
+TRANSPORTATION - CUSTOMER(1-M)
+TRANSPORTATION - GOODS(1-M)
 SUPPLIER - GOODS(1-M)
 SUPPLIER - TRANSPORTATION(1-1)

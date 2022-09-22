@@ -5,13 +5,13 @@ CUSTOMER
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  items - textfield
+  items - textfield(min1 max100)
 
 SUPPLIER
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  sales - charfield
+  stock - charfield(min5 max20,PK)
 
 CHEF
   name - charfield(min2  max10,blank=false,null=false)
@@ -19,44 +19,45 @@ CHEF
   age - autonumber(min0 max=150)
   chef_id - number(unique, PK)
   type of food - charfield
-  salary - currency
-  experience - charfield
+  salary - currency(BigDecimal)
+  experience - charfield(max2)
 
 WAITER
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  orders - charfield
-  salary - currency
+  orders - charfield(min0 max 20,required)
+  salary - currency(BigDecimal)
 
 GOODS
-  quality - charfield
-  market price - currency
-  quantity - number
+  quality - charfield(max10)
+  market price - currency(BigDecimal)
+  quantity - number(min50, PK)
+  stock - charfield(min5 max20,FK)
 
 MEAL 
-  name - charfield
+  name - charfield(min4 max15)
   meal_id - charfield(unique, PK)
-  price - currency.
+  price - currency(BigDecimal)
   chef_id - number(FK)
 
 
 DELIVERY
-  transporter - charfield
-  branch - charfield
-  price - currency  
+  transporter - charfield(min5 max20)
+  branch - charfield(min5 max20)
+  price - currency(BigDecimal)
 
 WORKERS
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  salary - currency(min0 max=30,000)
-  hours - number
+  salary - currency(BigDecimal)
+  hours - number(max8)
 
 RELATIONSHIPS
 
 CUSTOMER - WAITER(M-M)
-CUSTOMER - DELIVERY(M-1)
+DELIVERY- CUSTOMER(1-M)
 CHEF - WAITER(1-1)
 SUPPLIER - GOODS(M-M)
 CHEF - MEAL(1-M)
