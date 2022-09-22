@@ -1,0 +1,40 @@
+3.   hardwares database
+tables:
+
+CUSTOMER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  goods - textfield(min2  max10,blank=false,null=false)
+
+EMPLOYERS
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number(max8)
+
+SUPPLIER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  sales - charfield
+
+GOODS
+  quality - charfield
+  market price - currency
+  quantity - number
+
+TRANSPORTATION
+  transporter - charfield
+  branch - charfield
+  price - currency  
+
+RELATIONSHIPS
+
+CUSTOMER - EMPLOYERS(M-M)
+CUSTOMER - GOODS(M-M)
+CUSTOMER - TRANSPORTATION(M-1)
+GOODS - TRANSPORTATION(M-1)
+SUPPLIER - GOODS(1-M)
+SUPPLIER - TRANSPORTATION(1-1)

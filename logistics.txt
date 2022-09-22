@@ -1,0 +1,43 @@
+5.   logistics database
+tables:
+
+IMPORTER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  items - textfield
+
+CLIENT
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  client_id - number(unique, PK)
+  sales - charfield
+
+STOCK
+  item_id - number 
+  name - charfield
+  quantity - number
+  price - currency
+SALES
+  
+
+EMPLOYERS
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number
+  
+TRANSPORTATION
+  transporter - charfield
+  branch - charfield
+  cost - currency
+
+RELATIONSHIPS
+
+CLIENT - EMPLOYERS(M-M)
+CLIENT - IMPORTER(M-1)
+EMPLOYERS - TRANSPORTATION(M-1)
+EMPLOYERS - IMPORTER(M-M)
+

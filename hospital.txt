@@ -1,0 +1,64 @@
+1.   hospital database
+tables:
+
+PATIENT
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  diseases - charfield
+  age - autonumber(min0 max=150)
+  phone - number
+  address - charfield
+  patient id - number(unique, PK)
+  medicine - charfield
+  allergies - charfield
+
+DOCTOR
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  doctor_id - number(unique)
+  phone - number
+  experience - charfield
+  specialist - charfield
+  salary - currency(min0 max=300,000)
+  hours - number
+
+APPOINTMENT
+  date - 
+  doctor - charfield
+  appoint_id - number(unique, PK)
+  doctor_id - number(unique, FK)
+  patient id - number(FK)
+  blood pressure - charfield
+  pulse - charfield
+  treatment - charfield
+
+VISITOR
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  patient - charfield(min2  max10,blank=false,null=false)
+  hours - number
+
+STAFF
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number
+
+WORKERS
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number
+
+RELATIONSHIPS
+
+VISITOR - PATIENT(M-1)
+DOCTOR - PATIENT(1-1)
+DOCTOR - DOCTOR(1-M)
+APPOINTMENT - DOCTOR(1-1)
+APPOINTMENT - PATIENT(1-1)
+

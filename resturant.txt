@@ -1,0 +1,63 @@
+4.   resturant database
+tables:
+
+CUSTOMER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  items - textfield
+
+SUPPLIER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  sales - charfield
+
+CHEF
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  chef_id - number(unique, PK)
+  type of food - charfield
+  salary - currency
+  experience - charfield
+
+WAITER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  orders - charfield
+  salary - currency
+
+GOODS
+  quality - charfield
+  market price - currency
+  quantity - number
+
+MEAL 
+  name - charfield
+  meal_id - charfield(unique, PK)
+  price - currency.
+  chef_id - number(FK)
+
+
+DELIVERY
+  transporter - charfield
+  branch - charfield
+  price - currency  
+
+WORKERS
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number
+
+RELATIONSHIPS
+
+CUSTOMER - WAITER(M-M)
+CUSTOMER - DELIVERY(M-1)
+CHEF - WAITER(1-1)
+SUPPLIER - GOODS(M-M)
+CHEF - MEAL(1-M)
+

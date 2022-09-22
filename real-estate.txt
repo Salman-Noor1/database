@@ -1,0 +1,40 @@
+2.   real-estate database
+tables:
+
+BUYER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  number - autonumber
+
+SELLER
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  number - autonumber
+
+AGENT
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  commision - currency
+
+EMPLOYERS
+  name - charfield(min2  max10,blank=false,null=false)
+  gender - bool/charfield(required)
+  age - autonumber(min0 max=150)
+  salary - currency(min0 max=30,000)
+  hours - number
+
+HOUSES
+  location - charfield(min0  max100,blank=false)   
+  type - charfield(min0  max20,blank=false)
+  price - currency
+  plotsize - charfield
+  
+RELATIONSHIPS
+
+BUYER - EMPLOYERS(M-M)
+EMPLOYERS - SELLER(M-M)
+BUYER - HOUSES(M-M)
+SELLER - HOUSES(M-M)
