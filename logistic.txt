@@ -2,27 +2,32 @@
 tables:
 
 IMPORTER
+  import_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  items - textfield(required)
+  item_id - number(FK)
+
+ITEM
+  item_id - number(PK)
+  name - charfield(min5 max 20)
+  type - charfield(min5 max 20)
+  quantity - number(required)
 
 CLIENT
+  client_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  client_id - number(unique, PK)
-  sales - charfield(required)
+  item_id - number(FK)
 
-STOCK
-  item_id - number(unique, PK)
-  name - charfield(min5 max50, blank=false)
-  quantity - number(required)
-  price - currency(BigDecimal)
-SALES
-  
+ORDER
+  client_id - number(FK)
+  employ_id - number(FK)
+  transport_id - number(FK)
 
-EMPLOYERS
+EMPLOYEE
+  employ_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
@@ -30,14 +35,17 @@ EMPLOYERS
   hours - number(max8)
   
 TRANSPORTATION
+  transport_id - number(unique, PK)
   transporter - charfield(min5 max40)
   branch - charfield(min5 max30)
   cost - currency(BigDecimal)
 
 RELATIONSHIPS
 
-CLIENT - EMPLOYERS(M-M)
-IMPORTER - CLIENT(1-M)
-TRANSPORTATION - EMPLOYERS(1-M)
-EMPLOYERS - IMPORTER(M-M)
+IMPORTER - ITEM(1-M)
+CLIENT - ITEM(1-M)
+CLIENT - ORDER(1-M)
+EMPLOYEE - ORDER(1-M)
+TRANSPORTATION - ORDER(1-M)
+
 

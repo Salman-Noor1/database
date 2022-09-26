@@ -2,39 +2,36 @@
 tables:
 
 BUYER
+  Buyer_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  number - autonumber(max10)
+  phone - autonumber(max10)
 
 SELLER
+  seller_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  number - autonumber(max10)
+  phone - autonumber(max10)
 
-AGENT
-  name - charfield(min2  max10,blank=false,null=false)
-  gender - bool/charfield(required)
-  age - autonumber(min0 max=150)
-  commision - currency(BigDecimal)
-
-EMPLOYERS
+EMPLOYEE
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
   salary - currency(min0 max=30,000)
   hours - number(max8)
 
-HOUSES
+HOUSE
+  house_id - number(unique, PK)
   location - charfield(min0  max100,blank=false)   
   type - charfield(min0  max20,blank=false)
   price - currency(BigDecimal)
-  plotsize - charfield(min0  max100,blank=false) 
-  
+  plotsize - charfield(min0  max100,blank=false)
+  buyer_id - number(unique, FK)
+  seller_id - number(unique, FK) 
+
 RELATIONSHIPS
 
-BUYER - EMPLOYERS(M-M)
-EMPLOYERS - SELLER(M-M)
-BUYER - HOUSES(M-M)
-SELLER - HOUSES(M-M)
+BUYER - HOUSE(1-M)
+SELLER - ORDER(1-M)

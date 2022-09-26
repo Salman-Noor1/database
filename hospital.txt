@@ -2,21 +2,21 @@
 tables:
 
 PATIENT
+  patient id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   diseases - charfield(min5 max40)
   age - autonumber(min0 max=150)
   phone - number(max10)
   address - charfield(min4 max20)
-  patient id - number(unique, PK)
   medicine - charfield(min5 max40)
   allergies - charfield(min5 max40)
 
 DOCTOR
+  doctor_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  doctor_id - number(unique)
   phone - number(max10)
   experience - charfield(max3)
   specialist - charfield(max7)
@@ -24,16 +24,13 @@ DOCTOR
   hours - number(max8)
 
 APPOINTMENT
-  date - 
-  doctor - charfield(min3 max15)
-  appoint_id - number(unique, PK)
-  doctor_id - number(unique, FK)
-  patient id - number(FK)
-  blood pressure - charfield
-  pulse - charfield(min4 max10)
-  treatment - charfield(min5 max50)
+  appointment_id - number(PK)
+  doctor_id - number(FK)
+  patient_id - number(FK)
+  visitor_id - number(FK)
 
 VISITOR
+  visitor_id - number(PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
@@ -56,9 +53,8 @@ WORKERS
 
 RELATIONSHIPS
 
-PATIENT - VISITOR(1-M)
-DOCTOR - PATIENT(1-1)
-DOCTOR - DOCTOR(1-M)
-APPOINTMENT - DOCTOR(1-1)
-APPOINTMENT - PATIENT(1-1)
+PATIENT - APPOINTMENT(1-M)
+DOCTOR - APPOINTMENT(1-M)
+VISITOR - APPOINTMENT(1-M)
+
 

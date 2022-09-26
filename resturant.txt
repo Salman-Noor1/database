@@ -2,50 +2,68 @@
 tables:
 
 CUSTOMER
+  customer_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  items - textfield(min1 max100)
+  city_id - number(FK)
+
+CITY
+  city_id - number(PK)
+  cityname - charfield(min5 max15)
+  stateprovince_id - charfield(min5 max15, FK)
+
+STATEPROVINCE
+  stateprovince_id - number(PK)
+  stateprovince_name - charfield(min5 max15)
+  country_id - number(FK)
+
+COUNTRY
+  country_id - number(PK)
+  country_name_id - number(PK)
+  continent_name - charfield(min5 max15)
+
+SUPPLIER-GOODS
+  supplier_id - number(FK)
+  good_id - number(FK)
+
+GOODS
+  good_id - number(PK)
+  quality - charfield(max10)
+  market price - currency(BigDecimal)
+  quantity - number(min50)
 
 SUPPLIER
+  supplier_id - number(PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  stock - charfield(min5 max20,PK)
+
+SUPPLIER-ITEM
+  supplier-item_id - number(PK)
+  item - number(min5 max20)
+  supplier_id - number(unique, FK)
 
 CHEF
+  chef_id - number(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  chef_id - number(unique, PK)
-  type of food - charfield
   salary - currency(BigDecimal)
   experience - charfield(max2)
 
 WAITER
+  waiter_id - charfield(unique, PK)
   name - charfield(min2  max10,blank=false,null=false)
   gender - bool/charfield(required)
   age - autonumber(min0 max=150)
-  orders - charfield(min0 max 20,required)
   salary - currency(BigDecimal)
 
-GOODS
-  quality - charfield(max10)
-  market price - currency(BigDecimal)
-  quantity - number(min50, PK)
-  stock - charfield(min5 max20,FK)
-
-MEAL 
-  name - charfield(min4 max15)
-  meal_id - charfield(unique, PK)
-  price - currency(BigDecimal)
-  chef_id - number(FK)
-
-
 DELIVERY
-  transporter - charfield(min5 max20)
+  delivery_id - charfield(PK)
   branch - charfield(min5 max20)
   price - currency(BigDecimal)
+  meal_id - charfield(FK)
 
 WORKERS
   name - charfield(min2  max10,blank=false,null=false)
@@ -54,11 +72,32 @@ WORKERS
   salary - currency(BigDecimal)
   hours - number(max8)
 
+MEAL 
+  meal_id - charfield(unique, PK)
+  name - charfield(min4 max15)
+  price - currency(BigDecimal)
+  chef_id - number(FK)
+
+MEAL-ORDER
+  meal_id - charfield(unique, FK)
+  order_id - number(FK)
+
+ORDER
+  order_id - number(PK)
+  customer_id - number(FK)
+  meal_id - number(FK)
+  waiter_id - number(FK)
+
+CUSTOMER-ORDER
+  customer_id - number(FK)
+  order_id - number(FK)
+
+
 RELATIONSHIPS
 
-CUSTOMER - WAITER(M-M)
-DELIVERY- CUSTOMER(1-M)
-CHEF - WAITER(1-1)
+CUSTOMER - ORDER(1-M)
+MEAL- ORDER(M-M)
 SUPPLIER - GOODS(M-M)
 CHEF - MEAL(1-M)
-
+DELIVERY - MEAL(1-M)
+SUPPLIER - ITEM(1-M)
